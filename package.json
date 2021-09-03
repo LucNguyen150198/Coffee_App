@@ -21,6 +21,7 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.6.0",
     "react-native-shared-element": "^0.8.2",
+    "react-native-touchable-scale": "^2.1.2",
     "react-navigation-shared-element": "^5.0.0-alpha1"
   },
   "devDependencies": {
