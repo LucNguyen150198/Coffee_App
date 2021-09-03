@@ -99,6 +99,7 @@ const TabNavigation = () => {
       <Tab.Screen
         name={MENU_SCREEN}
         component={Menu}
+        
         options={{
           tabBarIcon: ({ color }) => (
             <Image

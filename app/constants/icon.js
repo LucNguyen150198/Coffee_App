@@ -3,11 +3,14 @@ const order_tab = require('../assets/icons/check-list.png');
 const home_tab = require('../assets/icons/house-silhouette.png');
 const message_tab = require('../assets/icons/chat.png');
 const profile_tab = require('../assets/icons/user.png');
-
+const left_arrow = require('../assets/icons/left-arrow.png');
+const search = require('../assets/icons/search.png');
 export default {
   menu_tab,
   order_tab,
   home_tab,
   message_tab,
   profile_tab,
+  left_arrow,
+  search
 };

@@ -2,7 +2,7 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   orange: '#FE906E',
   white: '#ffffff',
-  ghost_white: '#F8F8F9',
+  ghost_white: 'rgb(248,248,249)',
   wisp_pink: '#FFE9E2',
   suva_grey: '#8C8B8B',
   zambezi: '#5D5D5D',

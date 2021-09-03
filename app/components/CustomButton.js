@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { Colors, FontStyle, Layout, RADIUS, SPACING, w } from '../constants';
+import { Colors, FontStyle, Layout, RADIUS, SPACING, w } from '@constants';
 import TouchableScale from 'react-native-touchable-scale';
 
 const BUTTON_WIDTH = w * 0.9;
