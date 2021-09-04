@@ -1,15 +1,15 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Image,
-} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
 import { Colors, FontStyle, Layout, RADIUS, SPACING, w } from '@constants';
 
-
-export const CustomInput = ({ label, width = w * 0.9, iconName, ...props }) => {
+export const CustomInput = ({
+  label,
+  width = w * 0.9,
+  height = 45,
+  iconName,
+  multiline,
+  ...props
+}) => {
   return (
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
@@ -18,13 +18,15 @@ export const CustomInput = ({ label, width = w * 0.9, iconName, ...props }) => {
           styles.content,
           {
             width,
+            height,
           },
         ]}
       >
         {iconName && <Image source={iconName} style={styles.icon} />}
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, multiline && { paddingTop: SPACING }]}
           placeholderTextColor={Colors.suva_grey}
+          multiline={multiline}
           {...props}
         />
       </View>
@@ -33,16 +35,14 @@ export const CustomInput = ({ label, width = w * 0.9, iconName, ...props }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
 
   content: {
-    height: 45,
     ...Layout.rowVCenter,
     marginTop: SPACING,
     backgroundColor: Colors.ghost_white,
     borderRadius: RADIUS + 8,
-   paddingHorizontal: SPACING,
+    paddingHorizontal: SPACING,
   },
   label: {
     ...FontStyle.h4,
@@ -53,14 +53,13 @@ const styles = StyleSheet.create({
     ...FontStyle.p1,
     width: '100%',
     height: '100%',
-    flex:1
-    
+    flex: 1,
   },
   icon: {
     width: 20,
     height: 20,
     resizeMode: 'contain',
     tintColor: Colors.ghost,
-    marginRight:SPACING 
+    marginRight: SPACING,
   },
 });

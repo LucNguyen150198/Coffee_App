@@ -7,6 +7,10 @@ const left_arrow = require('../assets/icons/left-arrow.png');
 const search = require('../assets/icons/search.png');
 const add = require('../assets/icons/add.png');
 const like = require('../assets/icons/like.png');
+const star = require('../assets/icons/star.png');
+
+const ice = require('../assets/icons/snow.png');
+const sweet = require('../assets/icons/honey.png');
 export default {
   menu_tab,
   order_tab,
@@ -16,5 +20,8 @@ export default {
   left_arrow,
   search,
   add,
-  like
+  like,
+  star,
+  ice,
+  sweet,
 };

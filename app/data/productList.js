@@ -219,23 +219,23 @@ const data = [
 const levels = [
   {
     id: 1,
-    percent: '0%',
-    selected: false,
+    label: '0%',
+    value: 0,
   },
   {
     id: 2,
-    percent: '30%',
-    selected: true,
+    label: '30%',
+    value: 1,
   },
   {
     id: 3,
-    percent: '50%',
-    selected: false,
+    label: '50%',
+    value: 2,
   },
   {
     id: 4,
-    percent: '100%',
-    selected: false,
+    label: '100%',
+    value: 3,
   },
 ];
 
@@ -252,7 +252,7 @@ export const productList = data.map((item, index) => {
   return {
     ...item,
     qty: 1,
-    rating: `${Math.random(30) + 20 / 10}`,
+    rating: `${(Math.random(30) + 20 / 10).toFixed(1)}`,
     options: {
       level_of_ice: levels,
       level_of_sweet: levels,

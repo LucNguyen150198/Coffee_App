@@ -7,7 +7,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-
+import { SharedElement } from 'react-navigation-shared-element';
 import { IconButton, CustomInput, CategoryList, Card } from '@components';
 import {
   Icons,
@@ -19,6 +19,7 @@ import {
   PRODUCT_DETAIL_SCREEN,
 } from '@constants';
 import { productList } from '../data';
+import { h } from '../constants';
 export const Menu = ({ navigation }) => {
   // ********* VARIABLES ********* //
   const [tabSelected, setTab] = React.useState('All');
@@ -48,14 +49,21 @@ export const Menu = ({ navigation }) => {
   const renderProductItem = ({ item, index }) => {
     return (
       <Card style={styles.itemContainer} onPress={() => onGoToDetail(item)}>
-        <View
-          style={[
-            { backgroundColor: Colors.wisp_pink, borderRadius: RADIUS },
-            StyleSheet.absoluteFillObject,
-          ]}
-        />
+        <SharedElement
+          id={`item.${item.id}.bg`}
+          style={StyleSheet.absoluteFillObject}
+        >
+          <View
+            style={[
+              { backgroundColor: Colors.wisp_pink, borderRadius: RADIUS },
+              StyleSheet.absoluteFillObject,
+            ]}
+          />
+        </SharedElement>
 
-        <Image source={item?.image} style={styles.image} />
+        <SharedElement id={`item.${item.id}.image`}>
+          <Image source={item?.image} style={styles.image} />
+        </SharedElement>
 
         <View
           style={{
@@ -100,6 +108,10 @@ export const Menu = ({ navigation }) => {
         scrollEventThrottle={16}
         renderItem={renderProductItem}
       />
+
+      <SharedElement id={'general.bg'} style={styles.bg}>
+        <View style={styles.bg} />
+      </SharedElement>
     </SafeAreaView>
   );
 };
@@ -138,5 +150,15 @@ const styles = StyleSheet.create({
     ...FontStyle.h4,
     color: Colors.text,
     opacity: 0.8,
+  },
+  bg: {
+    width: w,
+    height: h,
+    position: 'absolute',
+    transform: [
+      {
+        translateY: h,
+      },
+    ],
   },
 });
