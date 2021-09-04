@@ -3,11 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   TextInput,
   Image,
 } from 'react-native';
-import { Colors, FontStyle, Layout, RADIUS, SPACING, w } from '../constants';
+import { Colors, FontStyle, Layout, RADIUS, SPACING, w } from '@constants';
+
 
 export const CustomInput = ({ label, width = w * 0.9, iconName, ...props }) => {
   return (
@@ -34,16 +34,15 @@ export const CustomInput = ({ label, width = w * 0.9, iconName, ...props }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: StatusBar.currentHeight || 40,
   },
 
   content: {
     height: 45,
-    ...Layout.rowCenter,
+    ...Layout.rowVCenter,
     marginTop: SPACING,
     backgroundColor: Colors.ghost_white,
     borderRadius: RADIUS + 8,
-    paddingHorizontal: SPACING,
+   paddingHorizontal: SPACING,
   },
   label: {
     ...FontStyle.h4,
@@ -54,12 +53,14 @@ const styles = StyleSheet.create({
     ...FontStyle.p1,
     width: '100%',
     height: '100%',
+    flex:1
+    
   },
   icon: {
     width: 20,
     height: 20,
     resizeMode: 'contain',
-    marginLeft: SPACING + 10,
     tintColor: Colors.ghost,
+    marginRight:SPACING 
   },
 });

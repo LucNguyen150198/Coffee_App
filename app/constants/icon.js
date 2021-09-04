@@ -5,6 +5,8 @@ const message_tab = require('../assets/icons/chat.png');
 const profile_tab = require('../assets/icons/user.png');
 const left_arrow = require('../assets/icons/left-arrow.png');
 const search = require('../assets/icons/search.png');
+const add = require('../assets/icons/add.png');
+const like = require('../assets/icons/like.png');
 export default {
   menu_tab,
   order_tab,
@@ -12,5 +14,7 @@ export default {
   message_tab,
   profile_tab,
   left_arrow,
-  search
+  search,
+  add,
+  like
 };

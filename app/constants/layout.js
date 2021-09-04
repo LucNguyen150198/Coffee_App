@@ -83,12 +83,23 @@ export default Layout = StyleSheet.create({
     shadowColor: Colors.suva_grey,
     shadowOffset: {
       width: 0,
-      height: -12,
+      height: -10,
     },
     shadowOpacity: 0.3,
-    shadowRadius: 7.49,
-    
+    shadowRadius: 8,
+
     elevation: 12,
+  },
+
+  shadowCard: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
   },
 
   // Size layout

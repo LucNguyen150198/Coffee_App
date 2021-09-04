@@ -2,7 +2,7 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   orange: '#FE906E',
   white: '#ffffff',
-  ghost_white: 'rgb(248,248,249)',
+  ghost_white: '#f7f7f7',
   wisp_pink: '#FFE9E2',
   suva_grey: '#8C8B8B',
   zambezi: '#5D5D5D',
@@ -14,8 +14,8 @@ export const Colors = {
   primary: '#2096BB',
   success: '#28a745',
   error: '#dc3545',
-  inactive:'#rgb(232,232,232)',
-  label_inactive:'#CED3DC',
+  inactive: '#rgb(232,232,232)',
+  label_inactive: '#CED3DC',
 };
 
 export const FontSize = {

@@ -61,7 +61,7 @@ export const CustomButton = ({
 };
 
 export const IconButton = ({
-  size = 40,
+  size = 35,
   backgroundColor = Colors.orange,
   style,
   onPress,
