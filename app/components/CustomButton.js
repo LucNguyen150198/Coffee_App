@@ -4,7 +4,7 @@ import { Colors, FontStyle, Layout, RADIUS, SPACING, w } from '@constants';
 import TouchableScale from 'react-native-touchable-scale';
 
 const BUTTON_WIDTH = w * 0.9;
-const BUTTON_HEIGHT = BUTTON_WIDTH * 0.14;
+const BUTTON_HEIGHT = BUTTON_WIDTH * 0.13;
 
 export const CustomButton = ({
   label = '',

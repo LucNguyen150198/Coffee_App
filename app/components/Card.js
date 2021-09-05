@@ -12,10 +12,10 @@ export const Card = ({
   shadow,
   children,
   style,
-  onPress = () => {},
+  onPress,
 }) => {
   return (
-    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+    <TouchableOpacity disabled={!onPress} activeOpacity={0.8} onPress={onPress}>
       <View
         style={[
           {
