@@ -68,6 +68,7 @@ export const IconButton = ({
   iconName,
   tintColor = Colors.white,
   border = RADIUS,
+  disabled,
 }) => {
   const handleOnPress = () => {
     if (typeof onPress === 'function') {
@@ -76,7 +77,11 @@ export const IconButton = ({
   };
 
   return (
-    <TouchableOpacity activeOpacity={0.8} onPress={handleOnPress}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={handleOnPress}
+      disabled={disabled}
+    >
       <View
         style={[
           styles.container,

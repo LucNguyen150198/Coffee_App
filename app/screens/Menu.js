@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  FlatList,
-  Image,
-} from 'react-native';
+import { StyleSheet, View, SafeAreaView, FlatList } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
-import { IconButton, CustomInput, CategoryList, Card } from '@components';
+import { CustomInput, CategoryList, ProductItem } from '@components';
 import {
   Icons,
   Colors,
-  RADIUS,
   SPACING,
   w,
   h,
@@ -46,48 +38,8 @@ export const Menu = ({ navigation }) => {
   }, [tabSelected]);
 
   // ********* LAYOUT ********* //
-  const renderProductItem = ({ item, index }) => {
-    return (
-      <Card style={styles.itemContainer} onPress={() => onGoToDetail(item)}>
-        <SharedElement
-          id={`item.${item.id}.bg`}
-          style={StyleSheet.absoluteFillObject}
-        >
-          <View
-            style={[
-              { backgroundColor: Colors.wisp_pink, borderRadius: RADIUS },
-              StyleSheet.absoluteFillObject,
-            ]}
-          />
-        </SharedElement>
-
-        <SharedElement id={`item.${item.id}.image`}>
-          <Image source={item?.image} style={styles.image} />
-        </SharedElement>
-
-        <View
-          style={{
-            position: 'absolute',
-            left: SPACING,
-            bottom: '30%',
-          }}
-        >
-          <Text adjustsFontSizeToFit numberOfLines={2} style={styles.name}>
-            {item.name}
-          </Text>
-        </View>
-
-        <View style={styles.content}>
-          <Text style={styles.price}>{item.price} vnd</Text>
-          <IconButton
-            size={25}
-            iconName={Icons.add}
-            border={RADIUS / 1.5}
-            onPress={() => onGoToDetail(item)}
-          />
-        </View>
-      </Card>
-    );
+  const renderProductItem = ({ item }) => {
+    return <ProductItem item={item} onPress={() => onGoToDetail(item)} />;
   };
 
   return (

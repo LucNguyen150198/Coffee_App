@@ -17,6 +17,7 @@ import {
   CustomInput,
   CustomButton,
   WrapperScrollView,
+  CustomQty,
 } from '@components';
 
 const TOP_HEADER_HEIGHT = h * 0.4;
@@ -194,19 +195,7 @@ export const ProductDetail = ({ navigation, route }) => {
       {/* ********* QTY AND BUTTON ADD *********  */}
       <Animatable.View useNativeDriver animation="fadeInUp">
         <Card width={w} height={h * 0.1} shadow style={styles.qtyAddContainer}>
-          <View style={[Layout.rowVCenter, Layout.fill]}>
-            <IconButton
-              iconName={Icons.minus}
-              backgroundColor={Colors.wisp_pink}
-              tintColor={Colors.orange}
-            />
-            <View style={styles.qtyContainer}>
-              <Text numberOfLines={1} adjustsFontSizeToFit style={styles.qty}>
-                {item.qty}
-              </Text>
-            </View>
-            <IconButton iconName={Icons.add} />
-          </View>
+          <CustomQty qty={item.qty} />
           <CustomButton label="Add" width={w * 0.45} />
         </Card>
       </Animatable.View>
@@ -282,11 +271,6 @@ const styles = StyleSheet.create({
     ...FontStyle.h3,
     color: Colors.text,
     paddingLeft: SPACING / 2,
-  },
-
-  qty: {
-    ...FontStyle.h2,
-    color: Colors.Text,
   },
 
   rating: {

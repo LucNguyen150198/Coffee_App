@@ -5,75 +5,39 @@ import {
   View,
   SafeAreaView,
   FlatList,
-  Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { SharedElement } from 'react-navigation-shared-element';
-import { IconButton, CustomBanner, Card, HeaderHomeScreen } from '@components';
+
+import { CustomBanner, HeaderHomeScreen, ProductItem } from '@components';
 import {
   Icons,
   Colors,
-  RADIUS,
   SPACING,
   w,
-  h,
   FontStyle,
   PRODUCT_DETAIL_SCREEN,
   Layout,
-} from '../constants';
+} from '@constants';
 import { banners, bookAgainList, recommendedList } from '../data';
+import { MENU_SCREEN } from '../constants';
 
 export const Home = ({ navigation }) => {
   const onGoToDetail = (item) => {
     navigation.push(PRODUCT_DETAIL_SCREEN, { item });
   };
 
-  const renderProductItem = ({ item, index }) => {
+  const onGoToMenu = () => {
+    navigation.navigate(MENU_SCREEN);
+  };
+
+  const renderProductItem = ({ item }) => {
     return (
-      <Card
-        key={index + ''}
-        style={styles.itemContainer}
+      <ProductItem
+        key={item.id + ''}
+        item={item}
         onPress={() => onGoToDetail(item)}
-      >
-        <SharedElement
-          id={`item.${item.id}.bg`}
-          style={StyleSheet.absoluteFillObject}
-        >
-          <View
-            style={[
-              { backgroundColor: Colors.wisp_pink, borderRadius: RADIUS },
-              StyleSheet.absoluteFillObject,
-            ]}
-          />
-        </SharedElement>
-
-        <SharedElement id={`item.${item.id}.image`}>
-          <Image source={item?.image} style={styles.image} />
-        </SharedElement>
-
-        <View
-          style={{
-            position: 'absolute',
-            left: SPACING,
-            bottom: '30%',
-          }}
-        >
-          <Text adjustsFontSizeToFit numberOfLines={2} style={styles.name}>
-            {item.name}
-          </Text>
-        </View>
-
-        <View style={styles.content}>
-          <Text style={styles.price}>{item.price} vnd</Text>
-          <IconButton
-            size={25}
-            iconName={Icons.add}
-            border={RADIUS / 1.5}
-            onPress={() => onGoToDetail(item)}
-          />
-        </View>
-      </Card>
+      />
     );
   };
 
@@ -118,13 +82,11 @@ export const Home = ({ navigation }) => {
                 </ScrollView>
               </View>
 
-              <View>
-                <CustomBanner data={banners} />
-              </View>
+              <CustomBanner data={banners} />
 
               <View style={styles.recommendedTitle}>
                 <Text style={styles.title}>Recommended</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onGoToMenu}>
                   <Text style={styles.seeAll}>See all</Text>
                 </TouchableOpacity>
               </View>
