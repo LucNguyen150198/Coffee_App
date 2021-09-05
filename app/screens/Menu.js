@@ -15,11 +15,11 @@ import {
   RADIUS,
   SPACING,
   w,
+  h,
   FontStyle,
   PRODUCT_DETAIL_SCREEN,
 } from '@constants';
 import { productList } from '../data';
-import { h } from '../constants';
 export const Menu = ({ navigation }) => {
   // ********* VARIABLES ********* //
   const [tabSelected, setTab] = React.useState('All');

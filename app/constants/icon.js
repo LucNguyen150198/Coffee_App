@@ -11,6 +11,9 @@ const star = require('../assets/icons/star.png');
 const ice = require('../assets/icons/snow.png');
 const sweet = require('../assets/icons/honey.png');
 const minus = require('../assets/icons/minus-sign.png');
+const pin = require('../assets/icons/pin.png');
+const hello = require('../assets/icons/hello.png');
+const cart = require('../assets/icons/shopping-cart.png');
 export default {
   menu_tab,
   order_tab,
@@ -25,4 +28,7 @@ export default {
   ice,
   sweet,
   minus,
+  hello,
+  pin,
+  cart,
 };

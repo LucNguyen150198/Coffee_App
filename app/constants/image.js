@@ -26,6 +26,11 @@ const ice_coconut_cafe = require('../assets/images/ice_coconut_cafe.png');
 const ice_mango = require('../assets/images/ice_mango.png');
 const ice_matcha = require('../assets/images/ice_matcha.png');
 
+// Banners
+const banner1 = require('../assets/images/menu_banner1.jpeg');
+const banner2 = require('../assets/images/menu_banner2.jpeg');
+const banner3 = require('../assets/images/menu_banner3.jpeg');
+
 export default {
   cafe_back,
   cafe_bap,
@@ -50,4 +55,7 @@ export default {
   ice_coconut_cafe,
   ice_mango,
   ice_matcha,
+  banner1,
+  banner2,
+  banner3,
 };

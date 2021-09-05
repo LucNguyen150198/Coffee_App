@@ -1,11 +1,5 @@
 import { Images } from '../constants';
-
-// export const popularFood = faker.helpers.shuffle(data).map((item, index) => ({
-//     ...item,
-//     key: index + 'popular',
-//     rating: `${faker.datatype.number(30) + 20 / 10}`,
-//     price: `$${faker.datatype.number(200) + 50 / 100}`,
-//   }));
+import faker from 'faker';
 
 const data = [
   {
@@ -252,10 +246,31 @@ export const productList = data.map((item, index) => {
   return {
     ...item,
     qty: 1,
-    rating: `${(Math.random(30) + 20 / 10).toFixed(1)}`,
+    rating: `${faker.datatype.number(5) + 20 / 10}`,
     options: {
       level_of_ice: levels,
       level_of_sweet: levels,
     },
   };
 });
+
+export const bookAgainList = faker.helpers.shuffle(data).map((item, index) => ({
+  ...item,
+  rating: `${faker.datatype.number(5) + 20 / 10}`,
+  qty: 1,
+  options: {
+    level_of_ice: levels,
+    level_of_sweet: levels,
+  },
+}));
+
+export const recommendedList = faker.helpers
+  .shuffle(productList)
+  .filter((item) => item.rating > 4)
+  .slice(0, 4);
+
+export const banners = [
+  { image: Images.banner1 },
+  { image: Images.banner2 },
+  { image: Images.banner3 },
+];
