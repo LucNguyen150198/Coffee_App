@@ -267,7 +267,7 @@ export const bookAgainList = faker.helpers.shuffle(data).map((item, index) => ({
 export const recommendedList = faker.helpers
   .shuffle(productList)
   .filter((item) => item.rating > 4)
-  .slice(0, 4);
+  .slice(0, 10);
 
 export const banners = [
   { image: Images.banner1 },

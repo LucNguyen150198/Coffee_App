@@ -90,6 +90,7 @@ const CustomBarLabel = ({ title, focused }) => {
 const TabNavigation = () => {
   return (
     <Tab.Navigator
+      initialRouteName={HOME_SCREEN}
       tabBarOptions={{
         style: styles.containerTab,
         activeTintColor: Colors.primary,

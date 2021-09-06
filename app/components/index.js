@@ -8,3 +8,5 @@ export * from './WrapperScrollView';
 export * from './CustomBanner';
 export * from './CustomQty';
 export * from './ProductItem';
+export * from './Dash';
+export * from './Badge';

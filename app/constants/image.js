@@ -31,6 +31,9 @@ const banner1 = require('../assets/images/menu_banner1.jpeg');
 const banner2 = require('../assets/images/menu_banner2.jpeg');
 const banner3 = require('../assets/images/menu_banner3.jpeg');
 
+const cart_empty =
+  'https://rtworkspace.com/wp-content/plugins/rtworkspace-ecommerce-wp-plugin/assets/img/empty-cart.png';
+
 export default {
   cafe_back,
   cafe_bap,
@@ -58,4 +61,5 @@ export default {
   banner1,
   banner2,
   banner3,
+  cart_empty
 };

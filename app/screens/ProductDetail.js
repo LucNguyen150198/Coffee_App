@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import * as Animatable from 'react-native-animatable';
-import { Colors, Icons, Layout, SPACING, h, w, FontStyle } from '../constants';
+import { Colors, Icons, Layout, SPACING, h, w, FontStyle ,CART_SCREEN} from '@constants';
 import {
   IconButton,
   Card,
@@ -19,6 +19,8 @@ import {
   WrapperScrollView,
   CustomQty,
 } from '@components';
+import { addCart } from '@slice/cart';
+import { useDispatch } from 'react-redux';
 
 const TOP_HEADER_HEIGHT = h * 0.4;
 
@@ -26,8 +28,23 @@ const DURATION = 400;
 
 export const ProductDetail = ({ navigation, route }) => {
   const { item } = route.params;
+  const dispatch = useDispatch();
+
+  const [qty, setQty] = React.useState(item.qty);
 
   const onBack = () => navigation.goBack();
+
+  const onGoToCart = () => {
+    onBack()
+    navigation.navigate(CART_SCREEN);
+  };
+
+  const addProductInCart = async () => {
+    const product = { ...item };
+    product.qty = qty;
+    await dispatch(addCart(product));
+    await onGoToCart();
+  };
 
   const renderOptions = (data = []) => {
     return (
@@ -195,8 +212,12 @@ export const ProductDetail = ({ navigation, route }) => {
       {/* ********* QTY AND BUTTON ADD *********  */}
       <Animatable.View useNativeDriver animation="fadeInUp">
         <Card width={w} height={h * 0.1} shadow style={styles.qtyAddContainer}>
-          <CustomQty qty={item.qty} />
-          <CustomButton label="Add" width={w * 0.45} />
+          <CustomQty qty={item.qty} onUpdate={setQty} disabled ={qty - 1 < 1}/>
+          <CustomButton
+            label="Add"
+            width={w * 0.45}
+            onPress={addProductInCart}
+          />
         </Card>
       </Animatable.View>
     </React.Fragment>

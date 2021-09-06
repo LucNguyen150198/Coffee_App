@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-
 import { CustomBanner, HeaderHomeScreen, ProductItem } from '@components';
 import {
   Icons,
@@ -17,12 +16,17 @@ import {
   w,
   FontStyle,
   PRODUCT_DETAIL_SCREEN,
+  CART_SCREEN,
+  MENU_SCREEN,
   Layout,
 } from '@constants';
 import { banners, bookAgainList, recommendedList } from '../data';
-import { MENU_SCREEN } from '../constants';
+import { useSelector } from 'react-redux';
 
 export const Home = ({ navigation }) => {
+  const carts = useSelector((state) => state.cart.carts);
+
+  // ********* FUNCTION ********* //
   const onGoToDetail = (item) => {
     navigation.push(PRODUCT_DETAIL_SCREEN, { item });
   };
@@ -31,6 +35,11 @@ export const Home = ({ navigation }) => {
     navigation.navigate(MENU_SCREEN);
   };
 
+  const onGoToCart = () => {
+    navigation.navigate(CART_SCREEN);
+  };
+
+  // ********* LAYOUT ********* //
   const renderProductItem = ({ item }) => {
     return (
       <ProductItem
@@ -47,6 +56,8 @@ export const Home = ({ navigation }) => {
         title="Good Morning"
         subTitle="29/3 Lo Sieu st"
         rightIcon={Icons.cart}
+        rightAction={onGoToCart}
+        numberCart={carts?.length}
       />
 
       {/* <CustomInput
@@ -54,7 +65,7 @@ export const Home = ({ navigation }) => {
         placeholder="Looking for some drink today?"
       /> */}
       <FlatList
-        style={{ paddingTop: SPACING - 5 }}
+        style={{ paddingTop: SPACING }}
         contentContainerStyle={{ alignItems: 'center' }}
         data={recommendedList}
         keyExtractor={(item, index) => item.id + ''}
@@ -121,6 +132,7 @@ const styles = StyleSheet.create({
     ...Layout.rowVCenter,
     ...Layout.justifyContentBetween,
     padding: SPACING * 2,
+    paddingBottom: 0,
   },
 
   image: {

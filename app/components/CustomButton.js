@@ -67,7 +67,7 @@ export const IconButton = ({
   onPress,
   iconName,
   tintColor = Colors.white,
-  border = RADIUS,
+  border = RADIUS / 2,
   disabled,
 }) => {
   const handleOnPress = () => {

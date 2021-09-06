@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { IconButton, Card } from '@components';
 import { Icons, Colors, RADIUS, SPACING, w, h, FontStyle } from '@constants';
-
+import { currency } from "../utils";
 export const ProductItem = ({ item, onPress }) => {
   return (
     <Card style={styles.itemContainer} onPress={onPress}>
@@ -36,7 +36,7 @@ export const ProductItem = ({ item, onPress }) => {
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.price}>{item.price} vnd</Text>
+        <Text style={styles.price}>{currency(item.price)} vnd</Text>
         <IconButton
           size={25}
           iconName={Icons.add}

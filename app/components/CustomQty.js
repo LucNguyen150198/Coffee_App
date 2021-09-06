@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { IconButton } from '@components';
 import { Icons, Colors, SPACING, FontStyle, Layout } from '@constants';
-export const CustomQty = ({ qty = 0, onUpdate }) => {
+export const CustomQty = ({ qty = 0, size, textStyle, onUpdate, disabled }) => {
   const [quantity, setQuantity] = React.useState(qty);
 
   React.useEffect(() => {
@@ -10,13 +10,15 @@ export const CustomQty = ({ qty = 0, onUpdate }) => {
   }, [qty]);
 
   const onHandleUpdateQty = (type) => () => {
-    if (type === '-' && quantity - 1 > 0) {
-      setQuantity(quantity - 1);
+    let newQty;
+    if (type === '-') {
+      newQty = quantity - 1;
     }
     if (type === '+') {
-      setQuantity(quantity + 1);
+      newQty = quantity + 1;
     }
-    // onUpdate();
+    setQuantity(newQty);
+    onUpdate(newQty);
   };
 
   return (
@@ -26,14 +28,23 @@ export const CustomQty = ({ qty = 0, onUpdate }) => {
         backgroundColor={Colors.wisp_pink}
         tintColor={Colors.orange}
         onPress={onHandleUpdateQty('-')}
-        disabled={quantity - 1 < 1}
+        disabled={disabled}
+        size={size}
       />
       <View style={styles.qtyContainer}>
-        <Text numberOfLines={1} adjustsFontSizeToFit style={styles.qty}>
+        <Text
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          style={[styles.qty, textStyle]}
+        >
           {quantity}
         </Text>
       </View>
-      <IconButton iconName={Icons.add} onPress={onHandleUpdateQty('+')} />
+      <IconButton
+        size={size}
+        iconName={Icons.add}
+        onPress={onHandleUpdateQty('+')}
+      />
     </View>
   );
 };

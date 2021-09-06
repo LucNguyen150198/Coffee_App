@@ -8,8 +8,9 @@ import {
   SPACING,
   w,
   Icons,
-} from '../constants';
+} from '@constants';
 import { IconButton } from './CustomButton';
+import { Badge } from './Badge';
 export const CustomHeaderScreen = ({
   leftAction,
   leftIcon = Icons.left_arrow,
@@ -40,6 +41,7 @@ export const HeaderHomeScreen = ({
   rightIcon = Icons.left_arrow,
   title = '',
   subTitle,
+  numberCart,
 }) => {
   return (
     <View style={styles.container}>
@@ -62,14 +64,17 @@ export const HeaderHomeScreen = ({
           </View>
         </View>
         {rightIcon && (
-          <IconButton
-            onPress={rightAction}
-            iconName={rightIcon}
-            border={RADIUS + 3}
-            backgroundColor={Colors.azure}
-            tintColor={Colors.primary}
-            size={55}
-          />
+          <View>
+            <IconButton
+              onPress={rightAction}
+              iconName={rightIcon}
+              border={RADIUS + 3}
+              backgroundColor={Colors.azure}
+              tintColor={Colors.primary}
+              size={55}
+            />
+            {!!numberCart && <Badge style={styles.badge} value={numberCart} />}
+          </View>
         )}
       </View>
     </View>
@@ -78,14 +83,15 @@ export const HeaderHomeScreen = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    height: 60,
     width: w,
+    //backgroundColor:'red'
   },
   headerContainer: {
     ...Layout.fill,
     ...Layout.rowVCenter,
     ...Layout.justifyContentBetween,
-    paddingHorizontal: SPACING 
+    paddingHorizontal: SPACING * 2,
   },
   content: {
     ...Layout.fill,
@@ -116,5 +122,10 @@ const styles = StyleSheet.create({
     width: w * 0.05,
     height: w * 0.05,
     resizeMode: 'contain',
+  },
+  badge: {
+    position: 'absolute',
+    right: SPACING / 2,
+    top: SPACING / 2,
   },
 });
