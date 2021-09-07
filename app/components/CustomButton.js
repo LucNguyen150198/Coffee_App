@@ -62,6 +62,7 @@ export const CustomButton = ({
 
 export const IconButton = ({
   size = 35,
+  imageSize,
   backgroundColor = Colors.orange,
   style,
   onPress,
@@ -98,8 +99,8 @@ export const IconButton = ({
           source={iconName}
           style={{
             tintColor,
-            width: size / 3,
-            height: size / 3,
+            width: imageSize ?? size / 3,
+            height: imageSize ?? size / 3,
             resizeMode: 'contain',
           }}
         />
@@ -111,7 +112,7 @@ export const IconButton = ({
 const styles = StyleSheet.create({
   container: {
     ...Layout.center,
-    padding: SPACING,
+    // padding: SPACING,
     borderRadius: RADIUS + 6,
   },
   label: {

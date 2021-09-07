@@ -14,6 +14,8 @@ const minus = require('../assets/icons/minus-sign.png');
 const pin = require('../assets/icons/pin.png');
 const hello = require('../assets/icons/hello.png');
 const cart = require('../assets/icons/shopping-cart.png');
+const edit = require('../assets/icons/pencil.png');
+const down_arrow = require('../assets/icons/down-chevron.png');
 export default {
   menu_tab,
   order_tab,
@@ -31,4 +33,6 @@ export default {
   hello,
   pin,
   cart,
+  edit,
+  down_arrow,
 };

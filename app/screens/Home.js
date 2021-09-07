@@ -22,6 +22,7 @@ import {
 } from '@constants';
 import { banners, bookAgainList, recommendedList } from '../data';
 import { useSelector } from 'react-redux';
+import { getMomentInDay } from '../utils';
 
 export const Home = ({ navigation }) => {
   const carts = useSelector((state) => state.cart.carts);
@@ -53,7 +54,7 @@ export const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderHomeScreen
-        title="Good Morning"
+        title={`Good ${getMomentInDay()}`}
         subTitle="29/3 Lo Sieu st"
         rightIcon={Icons.cart}
         rightAction={onGoToCart}

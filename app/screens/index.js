@@ -5,3 +5,4 @@ export * from './Message';
 export * from './Profile';
 export * from './ProductDetail';
 export * from './Cart';
+export * from './Checkout';

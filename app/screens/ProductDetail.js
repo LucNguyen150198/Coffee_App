@@ -9,7 +9,16 @@ import {
 } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import * as Animatable from 'react-native-animatable';
-import { Colors, Icons, Layout, SPACING, h, w, FontStyle ,CART_SCREEN} from '@constants';
+import {
+  Colors,
+  Icons,
+  Layout,
+  SPACING,
+  h,
+  w,
+  FontStyle,
+  CART_SCREEN,
+} from '@constants';
 import {
   IconButton,
   Card,
@@ -31,11 +40,12 @@ export const ProductDetail = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const [qty, setQty] = React.useState(item.qty);
+  // const [qty, setQty] = React.useState(0);
 
   const onBack = () => navigation.goBack();
 
   const onGoToCart = () => {
-    onBack()
+    onBack();
     navigation.navigate(CART_SCREEN);
   };
 
@@ -170,7 +180,7 @@ export const ProductDetail = ({ navigation, route }) => {
                     style={[styles.iconRating, { tintColor: Colors.text }]}
                   />
                 </View>
-                {renderOptions(item.options.level_of_ice)}
+                {renderOptions(item.options?.level_of_ice?.values)}
               </View>
 
               <View style={{ flex: 0.5 }}>
@@ -188,7 +198,7 @@ export const ProductDetail = ({ navigation, route }) => {
                   />
                 </View>
 
-                {renderOptions(item.options.level_of_sweet)}
+                {renderOptions(item.options?.level_of_sweet?.values)}
               </View>
             </Animatable.View>
 
@@ -212,7 +222,7 @@ export const ProductDetail = ({ navigation, route }) => {
       {/* ********* QTY AND BUTTON ADD *********  */}
       <Animatable.View useNativeDriver animation="fadeInUp">
         <Card width={w} height={h * 0.1} shadow style={styles.qtyAddContainer}>
-          <CustomQty qty={item.qty} onUpdate={setQty} disabled ={qty - 1 < 1}/>
+          <CustomQty qty={item.qty} onUpdate={setQty} disabled={qty - 1 < 1} />
           <CustomButton
             label="Add"
             width={w * 0.45}

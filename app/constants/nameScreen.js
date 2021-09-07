@@ -5,3 +5,4 @@ export const MESSAGE_SCREEN = 'message';
 export const PROFILE_SCREEN = 'profile';
 export const PRODUCT_DETAIL_SCREEN = 'product_detail';
 export const CART_SCREEN = 'cart';
+export const CHECKOUT_SCREEN = 'checkout';

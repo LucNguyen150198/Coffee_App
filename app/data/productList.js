@@ -259,15 +259,21 @@ export const bookAgainList = faker.helpers.shuffle(data).map((item, index) => ({
   rating: `${faker.datatype.number(5) + 20 / 10}`,
   qty: 1,
   options: {
-    level_of_ice: levels,
-    level_of_sweet: levels,
+    level_of_ice: {
+      label: 'ice',
+      values: levels,
+    },
+    level_of_sweet: {
+      label: 'sweet',
+      values: levels,
+    },
   },
 }));
 
 export const recommendedList = faker.helpers
   .shuffle(productList)
   .filter((item) => item.rating > 4)
-  .slice(0, 10);
+  .slice(0, 4);
 
 export const banners = [
   { image: Images.banner1 },
