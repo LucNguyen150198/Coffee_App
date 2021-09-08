@@ -18,17 +18,40 @@ export const CustomPicker = ({
   iconName = Icons.down_arrow,
   onPress,
   value,
-  animateRef,
+  placeholder = '',
 }) => {
-  const rotateZ = animateRef?.current?.valueAnimated?.interpolate({
+  const animation = React.useRef(new Animated.Value(0)).current;
+  const [open, setOpen] = React.useState(false);
+
+  const onHandlePress = () => {
+    setOpen(!open);
+    onPress();
+  };
+  React.useEffect(() => {
+    if (open) {
+      Animated.timing(animation, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(animation, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [open]);
+
+  const rotateZ = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [`-${Math.PI}rad`,'0rad' ],
+    outputRange: ['0rad', `${Math.PI}rad`],
   });
   return (
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
       <TouchableOpacity
-        onPress={onPress}
+        onPress={onHandlePress}
         activeOpacity={0.9}
         style={[
           styles.content,
@@ -38,7 +61,14 @@ export const CustomPicker = ({
           },
         ]}
       >
-        <TextInput style={[styles.textInput]} editable={false} value={value} />
+        <Text
+          style={[
+            styles.textInput,
+            { color: !value ? Colors.suva_grey : Colors.Text },
+          ]}
+        >
+          {value ?? placeholder}
+        </Text>
         {iconName && (
           <Animated.Image
             source={iconName}
@@ -75,11 +105,12 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    ...FontStyle.p1,
+    ...FontStyle.h4,
     width: '100%',
-    height: '100%',
+
     flex: 1,
   },
+
   icon: {
     width: 15,
     height: 15,

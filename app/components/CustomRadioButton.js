@@ -14,24 +14,45 @@ export const CustomRadioButton = ({
   inActiveButtonColor = Colors.inactive,
   buttonSize = 12,
   buttonOuterSize = 18,
-  animation,
+  labelHorizontal,
+  formHorizontal,
+  duration = DURATION,
+  useAnimation,
+  animation = 'fadeInUp',
+  buttonStyle,
+  labelColor = Colors.suva_grey,
+  onSelectedIndex,
+  defaultValue ,
 }) => {
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(null);
 
   const onHandlePress = (val) => {
     setValue(val);
+    onSelectedIndex(val);
   };
+
+  React.useEffect(() => {
+    console.log('defaultValue',defaultValue)
+    setValue(defaultValue);
+  }, [defaultValue]);
   return (
-    <RadioForm formHorizontal={false} animation={animation}>
+    <RadioForm formHorizontal={formHorizontal} animation={useAnimation}>
       {/* To create radio buttons, loop through your array of options */}
       {values.map((obj, i) => (
         <Animatable.View
           useNativeDriver
           key={i}
-          animation={'fadeInUp'}
-          delay={DURATION * 2 + i * 100}
+          animation={animation}
+          delay={duration * 2 + i * 100}
         >
-          <RadioButton labelHorizontal={true}>
+          <RadioButton
+            labelHorizontal={labelHorizontal}
+            style={buttonStyle}
+            wrapStyle={{
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             {/*  You can set RadioButtonLabel before RadioButtonInput */}
             <RadioButtonInput
               obj={obj}
@@ -48,15 +69,16 @@ export const CustomRadioButton = ({
               buttonStyle={{
                 backgroundColor: inActiveButtonColor,
               }}
-              buttonWrapStyle={{ margin: SPACING / 2 }}
             />
             <RadioButtonLabel
               obj={obj}
               index={i}
-              labelHorizontal={true}
+              labelHorizontal={labelHorizontal}
               onPress={onHandlePress}
-              labelStyle={styles.label}
-              labelWrapStyle={{}}
+              labelStyle={[
+                styles.label,
+                { color: labelColor, marginTop: SPACING },
+              ]}
             />
           </RadioButton>
         </Animatable.View>
@@ -68,6 +90,7 @@ export const CustomRadioButton = ({
 const styles = StyleSheet.create({
   label: {
     ...FontStyle.h5,
-    color: Colors.suva_grey,
+    overflow: 'hidden',
+    textAlign: 'center',
   },
 });

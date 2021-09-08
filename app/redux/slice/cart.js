@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   carts: [],
+  schedules: [{ day: {}, time: {} }],
 };
 
 const cartSlice = createSlice({
@@ -30,10 +31,23 @@ const cartSlice = createSlice({
       }
       state.carts = newCart;
     },
+
+    addSchedules(state, action) {
+      const item = { day: {}, time: {} };
+      state.schedules.push(item);
+    },
+
+    updateSchedules(state, action) {
+      const schedules = action.payload;
+      state.schedules = schedules;
+    },
+    resetSchedules(state, action) {
+      state.schedules = initialState.schedules;
+    },
   },
 });
 
 const { actions, reducer } = cartSlice;
 
-export const { addCart, updateCart } = actions;
+export const { addCart, updateCart, updateSchedules, addSchedules ,resetSchedules } = actions;
 export default reducer;

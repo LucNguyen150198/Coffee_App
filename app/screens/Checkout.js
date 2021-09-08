@@ -5,19 +5,17 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  Image,
   Switch,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CustomHeaderScreen,
-  CustomDatePicker,
+  AccordionCalendarList,
   CustomButton,
   Dash,
   IconButton,
-  TransitionView,
-  CustomPicker,
+  CustomInput,
 } from '../components';
 import {
   Colors,
@@ -25,33 +23,30 @@ import {
   FontStyle,
   MENU_SCREEN,
   Layout,
-  Images,
+  Icons,
   w,
-  h,
 } from '../constants';
 import { currency, calculateTotal } from '@utils';
-import { updateCart } from '@slice/cart';
-import { Icons } from '../constants';
-
-
+import {
+  updateCart,
+  updateSchedules,
+  addSchedules,
+  resetSchedules,
+} from '@slice/cart';
 
 export const Checkout = ({ navigation }) => {
   const carts = useSelector((state) => state.cart.carts);
-  const animateRef = React.useRef(null);
+
+  const schedules = useSelector((state) => state.cart.schedules);
   const dispatch = useDispatch();
   const [modeSchedule, setModeSchedule] = React.useState(false);
-
-  const [modeCalendar, setModeCalendar] = React.useState(false);
-
   const toggleModeSchedule = (val) => {
-    animateRef?.current.onToggle(val);
     setModeSchedule(val);
+    !val && dispatch(resetSchedules());
   };
 
-  const onPress = () => {
-    let newValue = !modeCalendar;
-    setModeCalendar(newValue);
-    animateRef.current?.onToggle(newValue);
+  const onUpdateSchedules = (data) => {
+    dispatch(updateSchedules(data));
   };
 
   const onBack = () => navigation.goBack();
@@ -91,52 +86,6 @@ export const Checkout = ({ navigation }) => {
             {modeSchedule ? 'On' : 'Off'}
           </Text>
         </View>
-      </View>
-    );
-  };
-
-  const BodyScheduling = () => {
-    return (
-      <View
-        style={{
-          width: w * 0.9,
-          alignSelf: 'center',
-          paddingVertical: SPACING,
-        }}
-      >
-        <TransitionView
-          parentView={() => (
-            <View
-              style={[
-                { width: '100%' },
-                Layout.rowVCenter,
-                Layout.justifyContentBetween,
-              ]}
-            >
-              <CustomPicker
-                label="Picker date"
-                width={w * 0.4}
-                animateRef={animateRef}
-                onPress={onPress}
-              />
-
-              <CustomPicker
-                label="Picker time"
-                width={w * 0.4}
-                animateRef={animateRef}
-                onPress={onPress}
-              />
-            </View>
-          )}
-          childrenView={() => {
-            return (
-              <View
-                style={{ width: 300, height: 100, backgroundColor: 'red' }}
-              ></View>
-            );
-          }}
-          ref={animateRef}
-        />
       </View>
     );
   };
@@ -217,12 +166,36 @@ export const Checkout = ({ navigation }) => {
           </View>
         </Card>
 
-        <TransitionView
-          parentView={HeaderScheduling}
-          childrenView={BodyScheduling}
-          value={modeSchedule}
-          ref={animateRef}
-        />
+        <HeaderScheduling />
+        {modeSchedule && (
+          <AccordionCalendarList
+            data={schedules}
+            onUpdate={onUpdateSchedules}
+          />
+        )}
+
+        {modeSchedule && (
+          <CustomButton
+            label="Add more day"
+            labelColor={Colors.primary}
+            backgroundColor={Colors.azure}
+            style={{ margin: SPACING }}
+            onPress={() => dispatch(addSchedules())}
+          />
+        )}
+
+        <View style={styles.containerCoupon}>
+          <Text style={styles.total}>Coupon</Text>
+          <View style={styles.contentCoupon}>
+            <CustomInput width={w * 0.5} placeholder="Your coupon here" />
+            <CustomButton
+              label="Add"
+              width={w * 0.3}
+              backgroundColor={Colors.suva_grey}
+              //onPress={addProductInCart}
+            />
+          </View>
+        </View>
 
         <Dash />
         <View style={styles.totalContainer}>
@@ -234,7 +207,7 @@ export const Checkout = ({ navigation }) => {
       </ScrollView>
 
       <View style={Layout.center}>
-        <CustomButton label="Checkout" />
+        <CustomButton label="Go to payment method" />
       </View>
     </SafeAreaView>
   );
@@ -306,5 +279,16 @@ const styles = StyleSheet.create({
     ...Layout.rowHCenter,
     ...Layout.justifyContentBetween,
     flex: 0.5,
+  },
+  containerCoupon: {
+    width: w * 0.9,
+    padding: SPACING / 2,
+    paddingVertical: SPACING,
+  },
+
+  contentCoupon: {
+    ...Layout.rowVCenter,
+    ...Layout.justifyContentBetween,
+    marginTop: SPACING / 2,
   },
 });
