@@ -6,6 +6,7 @@ import {
   ScrollView,
   SafeAreaView,
   Switch,
+  Image,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -25,6 +26,7 @@ import {
   addSchedules,
   resetSchedules,
 } from '@slice/cart';
+import { paymentList } from '../data';
 
 export const Payment = ({ navigation }) => {
   // ********* VARIABLES ********* //
@@ -50,20 +52,62 @@ export const Payment = ({ navigation }) => {
     setCoupon(value);
   };
 
-  const updateQtyProductInCart = async (item) => {
-    await dispatch(updateCart(item));
-  };
-
-  // const onGoToCart = () => {
-  //   navigation.navigate(CART_SCREEN);
-  // };
-
   // ********* LAYOUT ********* //
 
-  const HeaderScheduling = () => {
+  const PaymentMethodList = ({ data = [] }) => {
     return (
-      <View style={[styles.totalContainer, { paddingBottom: SPACING / 2 }]}>
-        <Text style={styles.total}>Scheduling</Text>
+      <View
+        style={[
+          styles.totalContainer,
+          { alignSelf: 'center', paddingTop: SPACING * 2 },
+        ]}
+      >
+        {data.map((item, index) => {
+          return (
+            <Card
+              key={index + ''}
+              width={w * 0.25}
+              height={w * 0.25}
+              backgroundColor={Colors.ghost_white}
+              style={Layout.center}
+              border={20}
+            >
+              <Image source={item.image} style={styles.icon} />
+              <Text style={styles.nameCard}>{item.name}</Text>
+            </Card>
+          );
+        })}
+      </View>
+    );
+  };
+
+  const FormCardInformation = () => {
+    return (
+      <View style={[Layout.fill, Layout.alignItemsCenter]}>
+        <HeaderFormCard />
+        <View style={[Layout.fill]}>
+          <CustomInput
+            label="Card name"
+            style={{ marginBottom: SPACING * 2 }}
+          />
+          <CustomInput
+            label="Card number"
+            style={{ marginBottom: SPACING * 2 }}
+          />
+
+          <View style={[Layout.rowVCenter, Layout.justifyContentBetween]}>
+            <CustomInput label="Exp date" width={w * 0.4} />
+            <CustomInput label="CVV" width={w * 0.4} />
+          </View>
+        </View>
+      </View>   
+    );
+  };
+
+  const HeaderFormCard = () => {
+    return (
+      <View style={[styles.headerFormCardContainer]}>
+        <Text style={styles.total}>Card Information</Text>
         <View style={Layout.rowVCenter}>
           <Switch
             value={modeSchedule}
@@ -80,7 +124,7 @@ export const Payment = ({ navigation }) => {
           <Text
             style={[styles.total, { marginLeft: SPACING, color: Colors.text }]}
           >
-            {modeSchedule ? 'On' : 'Off'}
+            Save
           </Text>
         </View>
       </View>
@@ -89,135 +133,24 @@ export const Payment = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CustomHeaderScreen title="Check out" leftAction={onBack} />
+      <CustomHeaderScreen title="Payment" leftAction={onBack} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           alignItems: 'center',
         }}
       >
-        <View style={styles.totalContainer}>
-          <Text style={styles.total}>Delivery Information</Text>
-          <View style={Layout.rowVCenter}>
-            <IconButton iconName={Icons.add} size={20} border={15} />
-            <Text
-              style={[
-                styles.total,
-                { marginLeft: SPACING, color: Colors.orange },
-              ]}
-            >
-              New
-            </Text>
-          </View>
-        </View>
-
-        {/* ********* Delivery Information *********  */}
-        <Card
-          width={w * 0.9}
-          height={w * 0.38}
-          backgroundColor={Colors.ghost_white}
-          style={{
-            padding: SPACING,
-          }}
-        >
-          <View style={styles.infoAddress}>
-            <View style={{ flex: 0.45 }}>
-              <Text style={styles.label}>Name</Text>
-              <Text
-                style={styles.labelValue}
-                numberOfLines={2}
-                adjustsFontSizeToFit
-              >
-                Jon Doe
-              </Text>
-            </View>
-
-            <View style={{ flex: 0.45 }}>
-              <Text style={styles.label}>Phone</Text>
-              <Text
-                numberOfLines={2}
-                adjustsFontSizeToFit
-                style={styles.labelValue}
-              >
-                +84 9211235734
-              </Text>
-            </View>
-
-            <View style={{ flex: 0.1, right: -10 }}>
-              <IconButton
-                iconName={Icons.edit}
-                size={20}
-                imageSize={11}
-                backgroundColor={Colors.primary}
-              />
-            </View>
-          </View>
-          <View style={{ flex: 0.5 }}>
-            <Text style={styles.label}>Address</Text>
-            <Text
-              numberOfLines={2}
-              adjustsFontSizeToFit
-              style={styles.labelValue}
-            >
-              123 Lo Sieu P16 Q11 Tp.HCM
-            </Text>
-          </View>
-        </Card>
-
-        {/* ********* Schedules Information *********  */}
-        <HeaderScheduling />
-        {modeSchedule && (
-          <AccordionCalendarList
-            data={schedules}
-            onUpdate={onUpdateSchedules}
-          />
-        )}
-
-        {modeSchedule && (
-          <CustomButton
-            label="Add more day"
-            labelColor={Colors.primary}
-            backgroundColor={Colors.azure}
-            style={{ margin: SPACING }}
-            onPress={() => dispatch(addSchedules())}
-          />
-        )}
-
-        {/* ********* Coupon Information *********  */}
         <View style={styles.containerCoupon}>
-          <Text style={styles.total}>Coupon</Text>
-          <View style={styles.contentCoupon}>
-            <CustomInput
-              value={coupon}
-              width={w * 0.5}
-              placeholder="Your coupon here"
-              onChangeText={onChangeValueCoupon}
-            />
-            <CustomButton
-              disabled={!coupon.length}
-              label="Add"
-              width={w * 0.3}
-              backgroundColor={
-                coupon.length ? Colors.primary : Colors.suva_grey
-              }
-              //onPress={addProductInCart}
-            />
-          </View>
+          <Text style={styles.total}>Choose your payment method</Text>
+          <PaymentMethodList data={paymentList} />
         </View>
 
-        <Dash />
-
-        {/* ********* Total Information *********  */}
-        <View style={styles.totalContainer}>
-          <Text style={styles.total}>Total</Text>
-          <Text style={[styles.total, { color: Colors.suva_grey }]}>
-            {currency(calculateTotal(carts))} vnd
-          </Text>
-        </View>
+        {/* ********* Card Information *********  */}
+        <FormCardInformation />
       </ScrollView>
 
       <View style={Layout.center}>
-        <CustomButton label="Go to payment method" />
+        <CustomButton label="Confirm Payment" />
       </View>
     </SafeAreaView>
   );
@@ -267,8 +200,15 @@ const styles = StyleSheet.create({
     ...Layout.fullWidth,
     ...Layout.rowVCenter,
     justifyContent: 'space-between',
-    padding: SPACING * 2,
+    padding: SPACING * 1.5,
     paddingTop: SPACING,
+  },
+  headerFormCardContainer: {
+    ...Layout.fullWidth,
+    ...Layout.rowVCenter,
+    justifyContent: 'space-between',
+    padding: SPACING * 1.5,
+    paddingTop: 0,
   },
   cartEmpty: {
     width: '100%',
@@ -291,14 +231,26 @@ const styles = StyleSheet.create({
     flex: 0.5,
   },
   containerCoupon: {
-    width: w * 0.9,
-    padding: SPACING / 2,
+    //width: w * 0.9,
+    ...Layout.fullWidth,
     paddingVertical: SPACING,
+    paddingHorizontal: SPACING * 1.5,
   },
 
   contentCoupon: {
     ...Layout.rowVCenter,
     ...Layout.justifyContentBetween,
     marginTop: SPACING * 1.2,
+  },
+  icon: {
+    width: 25,
+    height: 25,
+    resizeMode: 'contain',
+  },
+
+  nameCard: {
+    ...FontStyle.h5,
+    color: '#7F7F7F',
+    paddingTop: SPACING,
   },
 });

@@ -8,10 +8,11 @@ export const CustomInput = ({
   height = 45,
   iconName,
   multiline,
+  style,
   ...props
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {label && <Text style={styles.label}>{label}</Text>}
       <View
         style={[

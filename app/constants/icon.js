@@ -16,6 +16,10 @@ const hello = require('../assets/icons/hello.png');
 const cart = require('../assets/icons/shopping-cart.png');
 const edit = require('../assets/icons/pencil.png');
 const down_arrow = require('../assets/icons/down-chevron.png');
+
+const paypal = require('../assets/icons/paypal.png');
+const credit_card = require('../assets/icons/credit-card-payment.png');
+const cash = require('../assets/icons/money.png');
 export default {
   menu_tab,
   order_tab,
@@ -35,4 +39,7 @@ export default {
   cart,
   edit,
   down_arrow,
+  paypal,
+  credit_card,
+  cash,
 };
