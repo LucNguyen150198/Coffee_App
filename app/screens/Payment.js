@@ -26,7 +26,7 @@ import {
   resetSchedules,
 } from '@slice/cart';
 
-export const Checkout = ({ navigation }) => {
+export const Payment = ({ navigation }) => {
   // ********* VARIABLES ********* //
   const carts = useSelector((state) => state.cart.carts);
   const schedules = useSelector((state) => state.cart.schedules);

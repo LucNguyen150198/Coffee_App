@@ -19,14 +19,21 @@ export const CustomPicker = ({
   onPress,
   value,
   placeholder = '',
+  defaultValue,
+  disabled,
 }) => {
   const animation = React.useRef(new Animated.Value(0)).current;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(defaultValue);
 
   const onHandlePress = () => {
     setOpen(!open);
     onPress();
   };
+
+  React.useEffect(() => {
+    setOpen(defaultValue);
+  }, [defaultValue]);
+
   React.useEffect(() => {
     if (open) {
       Animated.timing(animation, {
@@ -51,6 +58,7 @@ export const CustomPicker = ({
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
       <TouchableOpacity
+        disabled={disabled}
         onPress={onHandlePress}
         activeOpacity={0.9}
         style={[
@@ -59,6 +67,7 @@ export const CustomPicker = ({
             width,
             height,
           },
+          disabled && styles.disabledStyle,
         ]}
       >
         <Text
@@ -117,5 +126,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     tintColor: Colors.orange,
     marginRight: SPACING,
+  },
+  disabledStyle: {
+    opacity: 0.8,
   },
 });

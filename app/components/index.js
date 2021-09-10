@@ -12,4 +12,4 @@ export * from './Dash';
 export * from './Badge';
 export * from './AccordionCalendarList';
 export * from './CustomPicker';
-export * from './DayOfWeeks';
+export * from './CustomCalendar';

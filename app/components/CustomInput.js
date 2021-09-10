@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
   content: {
     ...Layout.rowVCenter,
-    marginTop: SPACING,
+
     backgroundColor: Colors.ghost_white,
     borderRadius: RADIUS + 8,
     paddingHorizontal: SPACING,
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   label: {
     ...FontStyle.h4,
     color: Colors.suva_grey,
+    marginBottom: SPACING,
   },
 
   textInput: {

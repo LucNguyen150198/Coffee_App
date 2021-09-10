@@ -15,6 +15,7 @@ export const CustomButton = ({
   style,
   onPress,
   iconName,
+  disabled,
 }) => {
   const handleOnPress = () => {
     if (typeof onPress === 'function') {
@@ -23,7 +24,12 @@ export const CustomButton = ({
   };
 
   return (
-    <TouchableScale activeScale={0.8} friction={8} onPress={handleOnPress}>
+    <TouchableScale
+      disabled={disabled}
+      activeScale={0.8}
+      friction={8}
+      onPress={handleOnPress}
+    >
       <View
         style={[
           styles.container,

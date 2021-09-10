@@ -20,6 +20,7 @@ import {
   SPACING,
   FontStyle,
   MENU_SCREEN,
+  CHECKOUT_SCREEN,
   Layout,
   Images,
 } from '@constants';
@@ -39,9 +40,9 @@ export const Cart = ({ navigation }) => {
     await dispatch(updateCart(item));
   };
 
-  // const onGoToCart = () => {
-  //   navigation.navigate(CART_SCREEN);
-  // };
+  const onGoToCheckout = () => {
+    navigation.navigate(CHECKOUT_SCREEN);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -124,7 +125,7 @@ export const Cart = ({ navigation }) => {
       </ScrollView>
 
       <View style={Layout.center}>
-        <CustomButton label="Checkout" />
+        <CustomButton label="Checkout" onPress={onGoToCheckout} />
       </View>
     </SafeAreaView>
   );

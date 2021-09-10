@@ -8,11 +8,14 @@ import {
   Text,
 } from 'react-native';
 import { CustomPicker } from './CustomPicker';
+import { DayOfWeeks, DateTimePicker } from './CustomCalendar';
 import { Layout, w, SPACING, FontStyle, Colors } from '../constants';
-import { DayOfWeeks } from './DayOfWeeks';
+
+import moment from 'moment';
 export const AccordionCalendarList = React.forwardRef(
   ({ onUpdate, data = [] }, ref) => {
     const [currentIndex, setIndex] = useState(-1);
+    const [timeIndex, setTimeIndex] = useState(-1);
     const [daySelected, setDay] = useState(data);
     const toggleExpend = (index) => {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -32,6 +35,19 @@ export const AccordionCalendarList = React.forwardRef(
         onUpdate(newDays);
       }
     };
+
+    const selectedTime = (date) => {
+      let newDays = JSON.parse(JSON.stringify(daySelected));
+      if (timeIndex > -1) {
+        let time = moment(date).format('hh:mm A');
+
+        if (newDays[timeIndex]) {
+          newDays[timeIndex].time = time;
+          setDay(newDays);
+          onUpdate(newDays);
+        }
+      }
+    };
     return (
       <View style={styles.container}>
         <View style={styles.labelContainer}>
@@ -40,6 +56,8 @@ export const AccordionCalendarList = React.forwardRef(
         </View>
         {data.map((item, index) => {
           const days = daySelected[index]?.day;
+          const time = daySelected[index]?.time;
+
           return (
             <View key={index + ''} style={styles.cardContainer}>
               <View style={styles.card}>
@@ -51,10 +69,14 @@ export const AccordionCalendarList = React.forwardRef(
                     placeholder="New date"
                   />
 
-                  <CustomPicker
+                  <DateTimePicker
                     width={w * 0.4}
-                    onPress={() => toggleExpend(index)}
+                    value={time}
                     placeholder="New time"
+                    onSelectedTime={selectedTime}
+                    onPress={() => setTimeIndex(index)}
+                    disabled={!days?.day_formatted}
+                    mode="time"
                   />
                 </View>
                 {index === currentIndex && (
