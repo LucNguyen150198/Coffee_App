@@ -9,7 +9,7 @@ import RadioForm, {
 import { Colors, FontStyle, SPACING } from '../constants';
 const DURATION = 400;
 export const CustomRadioButton = ({
-  values,
+  values = [],
   selectedButtonColor = Colors.orange,
   inActiveButtonColor = Colors.inactive,
   buttonSize = 12,
@@ -17,28 +17,31 @@ export const CustomRadioButton = ({
   labelHorizontal,
   formHorizontal,
   duration = DURATION,
-  useAnimation,
+  useAnimation = true,
   animation = 'fadeInUp',
   buttonStyle,
   labelColor = Colors.suva_grey,
   onSelectedIndex,
-  defaultValue ,
+  defaultValue,
+  wrapStyle,
+  labelStyle,
 }) => {
   const [value, setValue] = React.useState(null);
 
   const onHandlePress = (val) => {
     setValue(val);
-    onSelectedIndex(val);
+    if (typeof onSelectedIndex === 'function') {
+      onSelectedIndex(val);
+    }
   };
 
   React.useEffect(() => {
-    console.log('defaultValue',defaultValue)
     setValue(defaultValue);
   }, [defaultValue]);
   return (
     <RadioForm formHorizontal={formHorizontal} animation={useAnimation}>
       {/* To create radio buttons, loop through your array of options */}
-      {values.map((obj, i) => (
+      {values?.map((obj, i) => (
         <Animatable.View
           useNativeDriver
           key={i}
@@ -48,10 +51,7 @@ export const CustomRadioButton = ({
           <RadioButton
             labelHorizontal={labelHorizontal}
             style={buttonStyle}
-            wrapStyle={{
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
+            wrapStyle={wrapStyle}
           >
             {/*  You can set RadioButtonLabel before RadioButtonInput */}
             <RadioButtonInput
@@ -77,7 +77,12 @@ export const CustomRadioButton = ({
               onPress={onHandlePress}
               labelStyle={[
                 styles.label,
-                { color: labelColor, marginTop: SPACING },
+                { color: labelColor },
+                !labelHorizontal
+                  ? { marginTop: SPACING }
+                  : {
+                      marginLeft: SPACING,
+                    },
               ]}
             />
           </RadioButton>

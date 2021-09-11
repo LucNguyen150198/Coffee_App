@@ -59,7 +59,12 @@ export const ProductDetail = ({ navigation, route }) => {
   const renderOptions = (data = []) => {
     return (
       <View style={[{ marginVertical: SPACING - 2 }]}>
-        <CustomRadioButton values={data} />
+        <CustomRadioButton
+          values={data}
+          wrapStyle={{
+            paddingVertical: SPACING / 2,
+          }}
+        />
       </View>
     );
   };

@@ -1,3 +1,4 @@
+
 export * from './CustomButton';
 export * from './CustomHeaderScreen';
 export * from './CustomInput';
@@ -13,3 +14,5 @@ export * from './Badge';
 export * from './AccordionCalendarList';
 export * from './CustomPicker';
 export * from './CustomCalendar';
+export * from './CustomSwitch';
+

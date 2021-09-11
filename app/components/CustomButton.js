@@ -39,6 +39,7 @@ export const CustomButton = ({
             backgroundColor,
           },
           style,
+          disabled && styles.btnDisabled,
         ]}
       >
         <View style={[Layout.fill, Layout.rowCenter]}>
@@ -129,5 +130,8 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: 'contain',
     marginRight: SPACING,
+  },
+  btnDisabled: {
+    backgroundColor: Colors.inactive,
   },
 });

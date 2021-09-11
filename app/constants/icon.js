@@ -20,6 +20,7 @@ const down_arrow = require('../assets/icons/down-chevron.png');
 const paypal = require('../assets/icons/paypal.png');
 const credit_card = require('../assets/icons/credit-card-payment.png');
 const cash = require('../assets/icons/money.png');
+const bling_bling = require('../assets/icons/stars.png');
 export default {
   menu_tab,
   order_tab,
@@ -42,4 +43,5 @@ export default {
   paypal,
   credit_card,
   cash,
+  bling_bling
 };

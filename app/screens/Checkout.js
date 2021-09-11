@@ -17,7 +17,15 @@ import {
   IconButton,
   CustomInput,
 } from '../components';
-import { Colors, SPACING, FontStyle, Layout, Icons, w } from '../constants';
+import {
+  Colors,
+  SPACING,
+  FontStyle,
+  Layout,
+  Icons,
+  w,
+  PAYMENT_SCREEN,
+} from '../constants';
 import { currency, calculateTotal } from '@utils';
 import {
   updateCart,
@@ -50,13 +58,9 @@ export const Checkout = ({ navigation }) => {
     setCoupon(value);
   };
 
-  const updateQtyProductInCart = async (item) => {
-    await dispatch(updateCart(item));
+  const onGoToPayment = () => {
+    navigation.navigate(PAYMENT_SCREEN);
   };
-
-  // const onGoToCart = () => {
-  //   navigation.navigate(CART_SCREEN);
-  // };
 
   // ********* LAYOUT ********* //
 
@@ -217,7 +221,7 @@ export const Checkout = ({ navigation }) => {
       </ScrollView>
 
       <View style={Layout.center}>
-        <CustomButton label="Go to payment method" />
+        <CustomButton label="Go to payment method" onPress={onGoToPayment} />
       </View>
     </SafeAreaView>
   );

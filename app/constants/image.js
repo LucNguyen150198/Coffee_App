@@ -3,6 +3,7 @@ const cafe_bap = require('../assets/images/cafe_bap.png');
 const cafe_choco = require('../assets/images/cafe_choco.png');
 const cafe_coldbrew = require('../assets/images/cafe_coldbrew.png');
 const cafe_nitro = require('../assets/images/cafe_nitro.png');
+const cafe_order = require('../assets/images/cafe_order.png');
 const milk_cafe = require('../assets/images/milk_cafe.png');
 const bac_xiu = require('../assets/images/bac_xiu.png');
 
@@ -30,6 +31,9 @@ const ice_matcha = require('../assets/images/ice_matcha.png');
 const banner1 = require('../assets/images/menu_banner1.jpeg');
 const banner2 = require('../assets/images/menu_banner2.jpeg');
 const banner3 = require('../assets/images/menu_banner3.jpeg');
+
+
+
 
 const cart_empty =
   'https://rtworkspace.com/wp-content/plugins/rtworkspace-ecommerce-wp-plugin/assets/img/empty-cart.png';
@@ -61,5 +65,7 @@ export default {
   banner1,
   banner2,
   banner3,
-  cart_empty
+  cart_empty,
+  cafe_order,
+  
 };

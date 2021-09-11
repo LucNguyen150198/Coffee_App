@@ -38,7 +38,7 @@ const OPTIONS_SCREEN = {
 };
 const Main = () => {
   return (
-    <Stack.Navigator initialRouteName={PAYMENT_SCREEN} headerMode="none">
+    <Stack.Navigator initialRouteName={TabNavigation} headerMode="none">
       <Stack.Screen component={TabNavigation} name="TabNavigation" />
       <Stack.Screen
         component={ProductDetail}

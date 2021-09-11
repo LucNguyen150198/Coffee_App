@@ -27,6 +27,10 @@ export const DayOfWeeks = ({ onSelectedDay, defaultValue }) => {
         labelColor={Colors.text}
         onSelectedIndex={onHandleSelected}
         defaultValue={defaultValue}
+        wrapStyle={{
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       />
 
       <Text style={styles.text}>
@@ -61,7 +65,7 @@ export const DateTimePicker = ({
 
   React.useEffect(() => {
     setValueInput(value);
-    console.log('value',value)
+    console.log('value', value);
   }, [value]);
 
   return (
