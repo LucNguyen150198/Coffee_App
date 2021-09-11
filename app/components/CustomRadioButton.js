@@ -41,53 +41,54 @@ export const CustomRadioButton = ({
   return (
     <RadioForm formHorizontal={formHorizontal} animation={useAnimation}>
       {/* To create radio buttons, loop through your array of options */}
-      {values?.map((obj, i) => (
-        <Animatable.View
-          useNativeDriver
-          key={i}
-          animation={animation}
-          delay={duration * 2 + i * 100}
-        >
-          <RadioButton
-            labelHorizontal={labelHorizontal}
-            style={buttonStyle}
-            wrapStyle={wrapStyle}
+      {Array.isArray(values) &&
+        values?.map((obj, i) => (
+          <Animatable.View
+            useNativeDriver
+            key={i}
+            animation={animation}
+            delay={duration * 2 + i * 100}
           >
-            {/*  You can set RadioButtonLabel before RadioButtonInput */}
-            <RadioButtonInput
-              obj={obj}
-              index={i}
-              isSelected={value === i}
-              onPress={onHandlePress}
-              borderWidth={1}
-              buttonInnerColor={selectedButtonColor}
-              buttonOuterColor={
-                value === i ? selectedButtonColor : inActiveButtonColor
-              }
-              buttonSize={buttonSize}
-              buttonOuterSize={buttonOuterSize}
-              buttonStyle={{
-                backgroundColor: inActiveButtonColor,
-              }}
-            />
-            <RadioButtonLabel
-              obj={obj}
-              index={i}
+            <RadioButton
               labelHorizontal={labelHorizontal}
-              onPress={onHandlePress}
-              labelStyle={[
-                styles.label,
-                { color: labelColor },
-                !labelHorizontal
-                  ? { marginTop: SPACING }
-                  : {
-                      marginLeft: SPACING,
-                    },
-              ]}
-            />
-          </RadioButton>
-        </Animatable.View>
-      ))}
+              style={buttonStyle}
+              wrapStyle={wrapStyle}
+            >
+              {/*  You can set RadioButtonLabel before RadioButtonInput */}
+              <RadioButtonInput
+                obj={obj}
+                index={i}
+                isSelected={value === i}
+                onPress={onHandlePress}
+                borderWidth={1}
+                buttonInnerColor={selectedButtonColor}
+                buttonOuterColor={
+                  value === i ? selectedButtonColor : inActiveButtonColor
+                }
+                buttonSize={buttonSize}
+                buttonOuterSize={buttonOuterSize}
+                buttonStyle={{
+                  backgroundColor: inActiveButtonColor,
+                }}
+              />
+              <RadioButtonLabel
+                obj={obj}
+                index={i}
+                labelHorizontal={labelHorizontal}
+                onPress={onHandlePress}
+                labelStyle={[
+                  styles.label,
+                  { color: labelColor },
+                  !labelHorizontal
+                    ? { marginTop: SPACING }
+                    : {
+                        marginLeft: SPACING / 4,
+                      },
+                ]}
+              />
+            </RadioButton>
+          </Animatable.View>
+        ))}
     </RadioForm>
   );
 };

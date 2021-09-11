@@ -248,8 +248,14 @@ export const productList = data.map((item, index) => {
     qty: 1,
     rating: `${faker.datatype.number(5) + 20 / 10}`,
     options: {
-      level_of_ice: levels,
-      level_of_sweet: levels,
+      level_of_ice: {
+        label: 'ice',
+        values: levels,
+      },
+      level_of_sweet: {
+        label: 'sweet',
+        values: levels,
+      },
     },
   };
 });

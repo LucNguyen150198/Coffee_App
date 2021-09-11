@@ -61,8 +61,9 @@ export const ProductDetail = ({ navigation, route }) => {
       <View style={[{ marginVertical: SPACING - 2 }]}>
         <CustomRadioButton
           values={data}
+          labelHorizontal={true}
           wrapStyle={{
-            paddingVertical: SPACING / 2,
+            padding: SPACING / 2,
           }}
         />
       </View>
