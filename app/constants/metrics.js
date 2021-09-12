@@ -10,3 +10,6 @@ export const RADIUS = 12;
 
 export const WIDTH_BANNER = w * 0.9;
 export const HEIGHT_BANNER = WIDTH_BANNER * 0.45;
+
+export const HEADER_MAX_HEIGHT = 150;
+export const HEADER_MIN_HEIGHT = 40;

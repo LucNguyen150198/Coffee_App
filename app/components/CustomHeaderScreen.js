@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Animated } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Colors,
   FontStyle,
@@ -8,6 +9,8 @@ import {
   SPACING,
   w,
   Icons,
+  HEADER_MAX_HEIGHT,
+  HEADER_MIN_HEIGHT,
 } from '@constants';
 import { IconButton } from './CustomButton';
 import { Badge } from './Badge';
@@ -42,29 +45,94 @@ export const HeaderHomeScreen = ({
   title = '',
   subTitle,
   numberCart,
+  animation,
 }) => {
+  const insets = useSafeAreaInsets();
+  const inputRange = [0, HEADER_MAX_HEIGHT + insets.top];
+  const inputRangeOpacity = [
+    0,
+    HEADER_MAX_HEIGHT / 2,
+    HEADER_MAX_HEIGHT + insets.top,
+  ];
+  const translateYTitle = animation.interpolate({
+    inputRange,
+    outputRange: [0, -HEADER_MIN_HEIGHT],
+    extrapolate: 'clamp',
+  });
+  const translateYSubTitle = animation.interpolate({
+    inputRange,
+    outputRange: [0, HEADER_MIN_HEIGHT / 2],
+    extrapolateRight: 'clamp',
+  });
+
+  const translateYCart = animation.interpolate({
+    inputRange,
+    outputRange: [0, HEADER_MIN_HEIGHT / 2],
+    extrapolate: 'clamp',
+  });
+
+  const opacity = animation.interpolate({
+    inputRange: inputRangeOpacity,
+    outputRange: [1, 0.2, 0],
+    extrapolate: 'clamp',
+  });
+  const titleColor = animation.interpolate({
+    inputRange,
+    outputRange: [Colors.text, Colors.white],
+    extrapolate: 'clamp',
+  });
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={[styles.content, Layout.alignItemsStart]}>
-          <View style={[Layout.rowVCenter, Layout.rowReverse]}>
+          <Animated.View
+            style={[
+              Layout.rowVCenter,
+              Layout.rowReverse,
+              {
+                opacity,
+                transform: [{ translateY: translateYTitle }],
+                //marginBottom: SPACING / 1.5,
+              },
+            ]}
+          >
             <Image
               source={Icons.hello}
               style={[
                 styles.icon,
-                { tintColor: '#F4C64C', marginLeft: SPACING / 2 },
+                {
+                  tintColor: '#F4C64C',
+                  marginLeft: SPACING / 2,
+                },
               ]}
             />
             <Text style={styles.titleHome}>{title}</Text>
-          </View>
+          </Animated.View>
 
-          <View style={[Layout.rowVCenter, { marginTop: SPACING / 1.5 }]}>
-            <Image source={Icons.pin} style={styles.icon} />
-            <Text style={styles.subTitleHome}>{subTitle}</Text>
-          </View>
+          <Animated.View
+            style={[
+              Layout.rowVCenter,
+              {
+                transform: [{ translateY: translateYSubTitle }],
+              },
+            ]}
+          >
+            <Animated.Image
+              source={Icons.pin}
+              style={[styles.icon, { tintColor: titleColor }]}
+            />
+            <Animated.Text style={[styles.subTitleHome, { color: titleColor }]}>
+              {subTitle}
+            </Animated.Text>
+          </Animated.View>
         </View>
         {rightIcon && (
-          <View>
+          <Animated.View
+            style={{
+              opacity,
+              transform: [{ translateY: translateYTitle }],
+            }}
+          >
             <IconButton
               onPress={rightAction}
               iconName={rightIcon}
@@ -74,7 +142,7 @@ export const HeaderHomeScreen = ({
               size={55}
             />
             {!!numberCart && <Badge style={styles.badge} value={numberCart} />}
-          </View>
+          </Animated.View>
         )}
       </View>
     </View>
@@ -115,7 +183,7 @@ const styles = StyleSheet.create({
   },
   subTitleHome: {
     ...FontStyle.h4,
-    color: Colors.text,
+
     marginLeft: SPACING / 2,
   },
   icon: {

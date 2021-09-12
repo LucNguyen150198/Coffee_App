@@ -6,7 +6,7 @@ export const calculateTotal = (data = []) => {
 };
 
 export const currency = (number) => {
-  let price = number.toLocaleString('vi-VN', {
+  let price = number?.toLocaleString('vi-VN', {
     style: 'currency',
     currency: 'VND',
   });

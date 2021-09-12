@@ -15,4 +15,4 @@ export * from './AccordionCalendarList';
 export * from './CustomPicker';
 export * from './CustomCalendar';
 export * from './CustomSwitch';
-
+export * from './InputSearchAnimation'
