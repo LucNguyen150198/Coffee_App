@@ -16,6 +16,7 @@ export const CustomButton = ({
   onPress,
   iconName,
   disabled,
+  borderRadius= RADIUS + 6
 }) => {
   const handleOnPress = () => {
     if (typeof onPress === 'function') {
@@ -37,6 +38,7 @@ export const CustomButton = ({
             width,
             height,
             backgroundColor,
+            borderRadius
           },
           style,
           disabled && styles.btnDisabled,
@@ -119,8 +121,6 @@ export const IconButton = ({
 const styles = StyleSheet.create({
   container: {
     ...Layout.center,
-    // padding: SPACING,
-    borderRadius: RADIUS + 6,
   },
   label: {
     ...FontStyle.h3,

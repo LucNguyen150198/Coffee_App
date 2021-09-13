@@ -49,7 +49,7 @@ export const InputSearchAnimation = React.forwardRef(
     });
     const translateX = animation.interpolate({
       inputRange: inputRange1,
-      outputRange: [0, w * 0.4],
+      outputRange: [0, w * 0.35],
       extrapolate: 'clamp',
     });
     const translateY = animation.interpolate({
@@ -74,7 +74,6 @@ export const InputSearchAnimation = React.forwardRef(
               right: -(w * 0.4),
               top: -HEADER_MIN_HEIGHT / 2,
               marginRight: 0,
-
               tintColor: Colors.white,
             },
           ]}

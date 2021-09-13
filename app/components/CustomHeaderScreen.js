@@ -61,8 +61,8 @@ export const HeaderHomeScreen = ({
   });
   const translateYSubTitle = animation.interpolate({
     inputRange,
-    outputRange: [0, HEADER_MIN_HEIGHT / 2],
-    extrapolateRight: 'clamp',
+    outputRange: [0, HEADER_MIN_HEIGHT / 2 - SPACING / 1.5],
+    extrapolate: 'clamp',
   });
 
   const translateYCart = animation.interpolate({
@@ -92,7 +92,7 @@ export const HeaderHomeScreen = ({
               {
                 opacity,
                 transform: [{ translateY: translateYTitle }],
-                //marginBottom: SPACING / 1.5,
+                marginBottom: SPACING / 1.5,
               },
             ]}
           >
