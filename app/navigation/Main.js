@@ -2,12 +2,19 @@ import TabNavigation from './TabNavigation';
 import { Easing } from 'react-native';
 import React from 'react';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
-import { ProductDetail, Cart, Checkout, Payment } from '@screens';
+import {
+  ProductDetail,
+  Cart,
+  Checkout,
+  Payment,
+  TrackingOrder,
+} from '@screens';
 import {
   PRODUCT_DETAIL_SCREEN,
   CART_SCREEN,
   CHECKOUT_SCREEN,
   PAYMENT_SCREEN,
+  TRACKING_ORDER_SCREEN,
 } from '@constants';
 
 const Stack = createSharedElementStackNavigator();
@@ -38,7 +45,7 @@ const OPTIONS_SCREEN = {
 };
 const Main = () => {
   return (
-    <Stack.Navigator initialRouteName={TabNavigation} headerMode="none">
+    <Stack.Navigator initialRouteName={TRACKING_ORDER_SCREEN} headerMode="none">
       <Stack.Screen component={TabNavigation} name="TabNavigation" />
       <Stack.Screen
         component={ProductDetail}
@@ -48,6 +55,7 @@ const Main = () => {
       <Stack.Screen component={Cart} name={CART_SCREEN} />
       <Stack.Screen component={Checkout} name={CHECKOUT_SCREEN} />
       <Stack.Screen component={Payment} name={PAYMENT_SCREEN} />
+      <Stack.Screen component={TrackingOrder} name={TRACKING_ORDER_SCREEN} />
     </Stack.Navigator>
   );
 };

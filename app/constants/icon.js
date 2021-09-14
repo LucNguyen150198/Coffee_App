@@ -21,6 +21,9 @@ const paypal = require('../assets/icons/paypal.png');
 const credit_card = require('../assets/icons/credit-card-payment.png');
 const cash = require('../assets/icons/money.png');
 const bling_bling = require('../assets/icons/stars.png');
+const email = require('../assets/icons/email.png');
+const phone = require('../assets/icons/phone-call.png');
+const safari = require('../assets/icons/safari.png');
 export default {
   menu_tab,
   order_tab,
@@ -43,5 +46,8 @@ export default {
   paypal,
   credit_card,
   cash,
-  bling_bling
+  bling_bling,
+  email,
+  phone,
+  safari,
 };

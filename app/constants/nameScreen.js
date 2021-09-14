@@ -7,3 +7,4 @@ export const PRODUCT_DETAIL_SCREEN = 'product_detail';
 export const CART_SCREEN = 'cart';
 export const CHECKOUT_SCREEN = 'checkout';
 export const PAYMENT_SCREEN = 'payment';
+export const TRACKING_ORDER_SCREEN = 'tracking_order';

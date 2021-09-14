@@ -95,7 +95,7 @@ export default Layout = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 6,
     },
     shadowOpacity: 0.3,
     shadowRadius: 10,
@@ -116,6 +116,4 @@ export default Layout = StyleSheet.create({
   fullHeight: {
     height: h,
   },
-
-  
 });
