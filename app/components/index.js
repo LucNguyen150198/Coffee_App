@@ -1,4 +1,3 @@
-
 export * from './CustomButton';
 export * from './CustomHeaderScreen';
 export * from './CustomInput';
@@ -15,4 +14,5 @@ export * from './AccordionCalendarList';
 export * from './CustomPicker';
 export * from './CustomCalendar';
 export * from './CustomSwitch';
-export * from './InputSearchAnimation'
+export * from './InputSearchAnimation';
+export * from './IndicatorAnimation';

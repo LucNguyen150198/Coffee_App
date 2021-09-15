@@ -20,7 +20,7 @@ import {
   SPACING,
   FontStyle,
   MENU_SCREEN,
-  CHECKOUT_SCREEN,
+  TRACKING_ORDER_SCREEN,
   Layout,
   Images,
   RADIUS,
@@ -34,7 +34,8 @@ export const Order = ({ navigation }) => {
     (state) => state.order.this_month_orders
   );
   const dispatch = useDispatch();
-  const onBack = () => navigation.goBack();
+  const onTracking = (item) => () =>
+    navigation.navigate(TRACKING_ORDER_SCREEN, { item });
 
   const onGoToMenu = () => {
     navigation.navigate(MENU_SCREEN);
@@ -51,6 +52,7 @@ export const Order = ({ navigation }) => {
     buttonBgColor,
     buttonLabelColor,
   }) => {
+
     return (
       <View style={styles.itemContainer}>
         <Card
@@ -81,6 +83,7 @@ export const Order = ({ navigation }) => {
             borderRadius={RADIUS}
             backgroundColor={buttonBgColor}
             labelColor={buttonLabelColor}
+            onPress={onTracking(item)}
           />
         </View>
       </View>
