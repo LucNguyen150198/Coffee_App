@@ -159,10 +159,11 @@ const styles = StyleSheet.create({
     ...Layout.row,
     ...Layout.justifyContentEvenly,
     height: 50,
+    alignItems:'center'
   },
   indicator: {
     position: 'absolute',
-    bottom: 22,
+    bottom: 5,
     left: 0,
     height: 2.5,
   },

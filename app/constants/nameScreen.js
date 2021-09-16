@@ -9,3 +9,4 @@ export const CHECKOUT_SCREEN = 'checkout';
 export const PAYMENT_SCREEN = 'payment';
 export const TRACKING_ORDER_SCREEN = 'tracking_order';
 export const NOTIFICATION_SCREEN = 'notification';
+export const CHAT_DETAIL_SCREEN = 'chat_detail';

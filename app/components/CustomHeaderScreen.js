@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    ...FontStyle.h4,
+    ...FontStyle.h5,
     marginTop: SPACING / 3,
     color: Colors.suva_grey,
   },

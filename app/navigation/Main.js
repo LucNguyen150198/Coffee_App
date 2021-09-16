@@ -8,6 +8,7 @@ import {
   Checkout,
   Payment,
   TrackingOrder,
+  ChatDetail,
 } from '@screens';
 import {
   PRODUCT_DETAIL_SCREEN,
@@ -15,6 +16,7 @@ import {
   CHECKOUT_SCREEN,
   PAYMENT_SCREEN,
   TRACKING_ORDER_SCREEN,
+  CHAT_DETAIL_SCREEN,
 } from '@constants';
 
 const Stack = createSharedElementStackNavigator();
@@ -45,7 +47,7 @@ const OPTIONS_SCREEN = {
 };
 const Main = () => {
   return (
-    <Stack.Navigator initialRouteName={"TabNavigation"} headerMode="none">
+    <Stack.Navigator initialRouteName={CHAT_DETAIL_SCREEN} headerMode="none">
       <Stack.Screen component={TabNavigation} name="TabNavigation" />
       <Stack.Screen
         component={ProductDetail}
@@ -56,6 +58,7 @@ const Main = () => {
       <Stack.Screen component={Checkout} name={CHECKOUT_SCREEN} />
       <Stack.Screen component={Payment} name={PAYMENT_SCREEN} />
       <Stack.Screen component={TrackingOrder} name={TRACKING_ORDER_SCREEN} />
+      <Stack.Screen component={ChatDetail} name={CHAT_DETAIL_SCREEN} />
     </Stack.Navigator>
   );
 };

@@ -1,20 +1,13 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Animated,
-  findNodeHandle,
-} from 'react-native';
-import { Colors, FontStyle, h, Layout, w } from '../constants';
+import { StyleSheet, Text, View } from 'react-native';
+import { Colors } from '../constants';
 import { ScrollTabView } from '../components';
-
+import { Chat, Notification } from '../screens';
 export const Message = () => {
   return (
     <ScrollTabView>
-      <View style={{ flex: 1, backgroundColor: 'red' }} title={'Chat'} />
-      <View style={{ flex: 1, backgroundColor: 'yellow' }} title={'Notification'} />
+      <Chat title={'Chat'} />
+      <Notification title={'Notification'} />
     </ScrollTabView>
   );
 };

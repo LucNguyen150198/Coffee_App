@@ -25,6 +25,7 @@ const email = require('../assets/icons/email.png');
 const phone = require('../assets/icons/phone-call.png');
 const safari = require('../assets/icons/safari.png');
 const shipper = require('../assets/icons/delivery-man.png');
+const tag = require('../assets/icons/tag.png');
 export default {
   menu_tab,
   order_tab,
@@ -52,4 +53,5 @@ export default {
   phone,
   safari,
   shipper,
+  tag
 };
