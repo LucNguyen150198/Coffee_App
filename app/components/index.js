@@ -16,3 +16,5 @@ export * from './CustomCalendar';
 export * from './CustomSwitch';
 export * from './InputSearchAnimation';
 export * from './IndicatorAnimation';
+
+export * from './ScrollTabView';

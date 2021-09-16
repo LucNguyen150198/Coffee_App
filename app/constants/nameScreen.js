@@ -8,3 +8,4 @@ export const CART_SCREEN = 'cart';
 export const CHECKOUT_SCREEN = 'checkout';
 export const PAYMENT_SCREEN = 'payment';
 export const TRACKING_ORDER_SCREEN = 'tracking_order';
+export const NOTIFICATION_SCREEN = 'notification';
