@@ -58,7 +58,7 @@ const Tab = React.forwardRef(({ item, scrollX, index, onItemPress }, ref) => {
   const inputRange = [(index - 1) * w, index * w, (index + 1) * w];
   const bgColor = scrollX.interpolate({
     inputRange,
-    outputRange: [Colors.inactive, Colors.orange, Colors.inactive],
+    outputRange: [Colors.label_inactive, Colors.text, Colors.label_inactive],
   });
 
   return (
@@ -66,7 +66,7 @@ const Tab = React.forwardRef(({ item, scrollX, index, onItemPress }, ref) => {
       <Animated.Text
         style={{
           color: bgColor,
-          ...FontStyle.h2,
+          ...FontStyle.h3,
         }}
       >
         {item.title}
@@ -86,15 +86,10 @@ const Indicator = ({ measures = [], scrollX, data }) => {
   });
   return (
     <Animated.View
-      style={{
-        position: 'absolute',
-        bottom: 15,
-        left: 0,
-        width,
-        height: 3,
-        backgroundColor: Colors.orange,
-        transform: [{ translateX }],
-      }}
+      style={[
+        styles.indicator,
+        { width, backgroundColor: Colors.orange, transform: [{ translateX }] },
+      ]}
     />
   );
 };
@@ -103,7 +98,13 @@ const Scene = ({ children }) => {
   return <View style={styles.sceneContainer}>{children}</View>;
 };
 
-export const ScrollTabView = ({ children }) => {
+export const ScrollTabView = ({
+  children,
+  activeTextColor,
+  inactiveTextColor,
+  activeTabColor,
+  inactiveTabColor,
+}) => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollView = React.useRef(null);
   const data = children.map((item, index) => ({
@@ -158,5 +159,11 @@ const styles = StyleSheet.create({
     ...Layout.row,
     ...Layout.justifyContentEvenly,
     height: 50,
+  },
+  indicator: {
+    position: 'absolute',
+    bottom: 22,
+    left: 0,
+    height: 2.5,
   },
 });
