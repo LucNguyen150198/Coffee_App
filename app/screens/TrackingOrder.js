@@ -19,8 +19,7 @@ import {
   Colors,
   SPACING,
   FontStyle,
-  MENU_SCREEN,
-  CHECKOUT_SCREEN,
+  CHAT_DETAIL_SCREEN,
   Layout,
   RADIUS,
   w,
@@ -85,7 +84,7 @@ export const TrackingOrder = ({ navigation, route }) => {
   const onBack = () => navigation.goBack();
 
   const onGoToMessage = () => {
-    //navigation.navigate(MENU_SCREEN);
+    navigation.navigate(CHAT_DETAIL_SCREEN);
   };
 
   const onCalling = () => {
@@ -108,7 +107,7 @@ export const TrackingOrder = ({ navigation, route }) => {
   const onReady = (result) => {
     setDuration(Math.ceil(result.duration));
     if (!isReady) {
-    //  mapRef.current?.fitToCoordinates(result?.coordinates);
+      //  mapRef.current?.fitToCoordinates(result?.coordinates);
 
       let nextLoc = {
         latitude: result?.coordinates[0]['latitude'],

@@ -9,13 +9,17 @@ import {
   Layout,
   RADIUS,
   w,
-  h,
-  Icons,
+  CHAT_DETAIL_SCREEN,
 } from '../constants';
+import { useNavigation } from '@react-navigation/core';
 export const Chat = () => {
+  const navigation = useNavigation();
+  const goToChatDetail = () => navigation.navigate(CHAT_DETAIL_SCREEN);
+
   const renderItem = ({ item, index }) => {
     return (
       <Card
+        onPress={goToChatDetail}
         width={w * 0.9}
         height={w * 0.25}
         style={Layout.rowVCenter}
