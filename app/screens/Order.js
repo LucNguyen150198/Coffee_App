@@ -51,8 +51,8 @@ export const Order = ({ navigation }) => {
     buttonLabel,
     buttonBgColor,
     buttonLabelColor,
+    onPress,
   }) => {
-
     return (
       <View style={styles.itemContainer}>
         <Card
@@ -77,13 +77,12 @@ export const Order = ({ navigation }) => {
         <View key={item.id} style={styles.buttonContainer}>
           <CustomButton
             label={buttonLabel}
-            onPress={onGoToMenu}
+            onPress={onPress}
             width={w * 0.3}
             height={35}
             borderRadius={RADIUS}
             backgroundColor={buttonBgColor}
             labelColor={buttonLabelColor}
-            onPress={onTracking(item)}
           />
         </View>
       </View>
@@ -107,6 +106,7 @@ export const Order = ({ navigation }) => {
                 item={item}
                 index={index}
                 buttonLabel="Track"
+                onPress={onTracking(item)}
               />
             );
           })}
@@ -122,6 +122,7 @@ export const Order = ({ navigation }) => {
                 buttonLabel="Reorder"
                 buttonBgColor={Colors.azure}
                 buttonLabelColor={Colors.primary}
+                onPress={onGoToMenu}
               />
             );
           })}

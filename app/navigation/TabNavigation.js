@@ -100,7 +100,6 @@ const TabNavigation = () => {
       <Tab.Screen
         name={MENU_SCREEN}
         component={Menu}
-        
         options={{
           tabBarIcon: ({ color }) => (
             <Image
@@ -192,7 +191,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   containerTab: {
-    borderRadius: RADIUS * 3,
     paddingTop: SPACING / 2,
     backgroundColor: Colors.white,
     ...Layout.shadow,

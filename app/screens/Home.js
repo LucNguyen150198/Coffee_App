@@ -36,8 +36,6 @@ import { getMomentInDay } from '../utils';
 export const Home = ({ navigation }) => {
   const carts = useSelector((state) => state.cart.carts);
   const scrollY = React.useRef(new Animated.Value(0)).current;
-  const viewRef = React.useRef();
-  const [headerSection, setHeaderSection] = React.useState(null);
   // ********* FUNCTION ********* //
   const onGoToDetail = (item) => {
     navigation.push(PRODUCT_DETAIL_SCREEN, { item });

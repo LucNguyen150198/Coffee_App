@@ -27,6 +27,7 @@ const safari = require('../assets/icons/safari.png');
 const shipper = require('../assets/icons/delivery-man.png');
 const tag = require('../assets/icons/tag.png');
 const send = require('../assets/icons/send.png');
+const right_arrow = require('../assets/icons/right-arrow.png');
 export default {
   menu_tab,
   order_tab,
@@ -55,5 +56,6 @@ export default {
   safari,
   shipper,
   tag,
-  send
+  send,
+  right_arrow,
 };

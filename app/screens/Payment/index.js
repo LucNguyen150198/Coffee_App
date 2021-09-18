@@ -8,11 +8,17 @@ import {
   Image,
   Animated,
 } from 'react-native';
-
+import {
+  Colors,
+  SPACING,
+  FontStyle,
+  Layout,
+  w,
+  ORDER_SCREEN,
+} from '@constants';
 import { Card, CustomHeaderScreen, CustomButton } from '@components';
 import * as Popup from '@components/Popup';
 import { useDispatch } from 'react-redux';
-import { Colors, SPACING, FontStyle, Layout, w } from '@constants';
 import { paymentList } from '../../data';
 import FormCreditCard from './FormCreditCard';
 
@@ -44,7 +50,7 @@ export const Payment = ({ navigation }) => {
     navigation.navigate('TabNavigation');
   };
   const onTrackOrder = () => {
-    // navigation.navigate()
+    navigation.navigate(ORDER_SCREEN);
     onClosePopUp();
   };
   // ********* LAYOUT ********* //
