@@ -10,4 +10,5 @@ export * from './Payment';
 export * from './TrackingOrder';
 export * from './Chat';
 export * from './Notification';
-export * from './ChatDetail'
+export * from './ChatDetail';
+export * from './SignIn';

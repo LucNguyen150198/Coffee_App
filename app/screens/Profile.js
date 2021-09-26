@@ -16,9 +16,11 @@ import {
   RADIUS,
   SPACING,
   w,
-} from '../constants';
-import { CustomHeaderScreen, Card, CustomButton } from '../components';
+} from '@constants';
+import { CustomHeaderScreen, Card, CustomButton } from '@components';
 import { profile, settingList } from '../data';
+import { signOut } from '../firebase/service/auth';
+
 export const Profile = ({ navigation }) => {
   const onBack = () => navigation.goBack();
   return (
@@ -58,7 +60,7 @@ export const Profile = ({ navigation }) => {
         label="Log out"
         labelColor={Colors.primary}
         backgroundColor={Colors.azure}
-        // onPress={() => dispatch(addSchedules())}
+        onPress={signOut}
       />
     </SafeAreaView>
   );

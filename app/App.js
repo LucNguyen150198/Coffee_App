@@ -10,10 +10,13 @@ import React from 'react';
 import RootNavigation from './navigation';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import AppProvider from './context/AppProvider';
 const App = () => {
   return (
     <Provider store={store}>
-      <RootNavigation />
+      <AppProvider>
+        <RootNavigation />
+      </AppProvider>
     </Provider>
   );
 };
